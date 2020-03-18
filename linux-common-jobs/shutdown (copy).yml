@@ -1,0 +1,10 @@
+---
+- name: shutdown
+  become: 'yes'
+  become_method: sudo
+  hosts: rhel
+
+  tasks:
+  - name: shutdown hosts
+    command: shutdown -h now
+    ignore_errors: 'yes'
