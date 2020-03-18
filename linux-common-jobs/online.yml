@@ -1,0 +1,9 @@
+---
+- name: online
+  become: 'yes'
+  become_method: sudo
+  hosts: rhel
+
+  tasks:
+  - name: check hosts online
+    ping:
