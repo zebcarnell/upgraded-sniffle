@@ -1,0 +1,7 @@
+---
+- name: Apache Installation Playbook
+  hosts: rhel
+  become: yes
+
+  roles:
+  - apache-simple
