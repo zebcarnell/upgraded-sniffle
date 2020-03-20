@@ -1,10 +1,10 @@
 ---
-- name: Register as user (xxxxx) with password (xxxxx) and auto-subscribe to available content.
+- name: Register as user (xxxxx) with password (xxxxx) and auto-subscribe to available content
   hosts: webservers
   become: 'yes'
 
   tasks:
-  redhat_subscription:
+  - redhat_subscription:
     state: present
     username: xxxxx
     password: xxxxx
