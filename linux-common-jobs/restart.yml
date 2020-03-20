@@ -1,0 +1,9 @@
+---
+- name: Restart machines
+  hosts: webservers
+  become: 'yes'
+
+  tasks:
+  - name: reboot
+    reboot:
+      reboot_timeout: 3600

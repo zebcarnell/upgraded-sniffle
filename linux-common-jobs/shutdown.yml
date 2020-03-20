@@ -1,5 +1,5 @@
 ---
-- name: shutdown
+- name: shutdown machines
   become: 'yes'
   hosts: all
 

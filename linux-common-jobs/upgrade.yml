@@ -1,5 +1,5 @@
 ---
-- name: Upgrade all system packages
+- name: upgrade all machines
   hosts: all
   become: 'yes'
 
