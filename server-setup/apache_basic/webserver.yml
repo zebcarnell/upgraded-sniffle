@@ -1,7 +1,7 @@
 ---
 - name: Apache Installation Playbook
   hosts: webservers
-  become: yes
+  become: 'yes'
 
   roles:
   - apache-simple

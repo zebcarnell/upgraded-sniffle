@@ -3,7 +3,8 @@
   become: 'yes'
   become_method: sudo
   hosts: all
-   
+  gather_facts: 'no'
+
   tasks:
   - name: check hosts online
     ping:
