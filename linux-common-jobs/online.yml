@@ -1,7 +1,6 @@
 ---
 - name: online
   become: 'yes'
-  become_method: sudo
   hosts: all
   gather_facts: 'no'
 

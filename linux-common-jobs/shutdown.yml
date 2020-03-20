@@ -1,7 +1,6 @@
 ---
 - name: shutdown
   become: 'yes'
-  become_method: sudo
   hosts: all
 
   tasks:
