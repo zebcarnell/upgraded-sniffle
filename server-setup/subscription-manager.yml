@@ -1,5 +1,5 @@
 ---
-- name: Register as user (xxxxx) with password (xxxxx) and auto-subscribe to available content
+- name: Register as user (xxxxx) with password (xxxxx), auto-subscribe to available content, upgrade and reboot
   hosts: webservers
   become: 'yes'
 
@@ -15,3 +15,12 @@
         role: "Red Hat Enterprise Linux Server"
         service_level_agreement: "Standard"
         sync: 'true'
+
+  - name: update and upgrade
+    yum:
+      name: '*'
+      state: latest
+  
+  - name: reboot
+    reboot:
+      reboot_timeout: 3600

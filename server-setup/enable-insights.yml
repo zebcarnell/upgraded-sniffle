@@ -1,0 +1,9 @@
+---
+- name: enable insights
+  become: 'yes'
+  hosts: all
+
+  tasks:
+  - name: enable
+    command: insights-client --register
+    ignore_errors: 'yes'

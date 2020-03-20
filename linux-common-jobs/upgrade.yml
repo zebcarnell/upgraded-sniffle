@@ -1,0 +1,12 @@
+---
+- name: Upgrade all system packages
+  hosts: all
+  become: 'yes'
+
+  tasks:
+  - name: update and upgrade
+    yum:
+      name: '*'
+      state: latest
+
+  #add check for new kernal and reboot task
