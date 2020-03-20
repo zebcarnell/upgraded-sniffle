@@ -1,6 +1,6 @@
 ---
 - name: Apache Installation Playbook
-  hosts: rhel
+  hosts: webservers
   become: yes
 
   roles:
