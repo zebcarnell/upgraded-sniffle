@@ -4,13 +4,14 @@
   become: 'yes'
 
   tasks:
-  - redhat_subscription:
-    state: present
-    username: xxxxx
-    password: xxxxx
-    auto_attach: 'true'
-    syspurpose:
-      usage: "Development/Test"
-      role: "Red Hat Enterprise Linux Server"
-      service_level_agreement: "Standard"
-      sync: 'true'
+  - name: update redhat subscription
+    redhat_subscription:
+      state: present
+      username: xxxxx
+      password: xxxxx
+      auto_attach: 'true'
+      syspurpose:
+        usage: "Development/Test"
+        role: "Red Hat Enterprise Linux Server"
+        service_level_agreement: "Standard"
+        sync: 'true'
