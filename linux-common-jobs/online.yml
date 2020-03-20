@@ -2,7 +2,7 @@
 - name: online
   become: 'yes'
   become_method: sudo
-  hosts: rhel
+  hosts: all
    
   tasks:
   - name: check hosts online
