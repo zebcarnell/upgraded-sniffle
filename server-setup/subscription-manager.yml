@@ -1,6 +1,6 @@
 ---
 - name: Register as user (xxxxx) with password (xxxxx), auto-subscribe to available content, upgrade and reboot
-  hosts: webservers
+  hosts: rhel
   become: 'yes'
 
   tasks:
