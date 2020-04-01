@@ -1,7 +1,7 @@
 ---
 - name: Restart machines
-  hosts: webservers
   become: 'yes'
+  hosts: all
 
   tasks:
   - name: reboot
