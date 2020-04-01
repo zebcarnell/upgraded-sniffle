@@ -1,5 +1,5 @@
 ---
-- name: Restart machines
+- name: restart machines
   become: 'yes'
   hosts: all
 
