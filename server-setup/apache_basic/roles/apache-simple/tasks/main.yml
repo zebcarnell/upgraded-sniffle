@@ -5,7 +5,13 @@
     name: "{{ item }}"
     state: present
   loop: "{{ httpd_packages }}"
-  notify: restart apache service
+
+- name: Start and enable the firewalld service
+  service:
+    name: firewalld
+    enabled: true
+    state: started
+  notify: set firewall
 
 - name: copy index.html
   template:

@@ -2,7 +2,7 @@
 # handlers file for apache-simple
 
 - name: set firewall
-  listen: restart apache service
+  listen: set firewall
   firewalld:
     port: 80/tcp
     permanent: 'yes'
