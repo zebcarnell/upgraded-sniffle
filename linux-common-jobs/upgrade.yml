@@ -1,7 +1,7 @@
 ---
 - name: upgrade all machines
-  hosts: all
-  become: 'yes'
+  hosts: rhel
+  become: true
 
   tasks:
   - name: update and upgrade
@@ -9,4 +9,4 @@
       name: '*'
       state: latest
 
-  #add check for new kernal and reboot task
+  #add check for new kernel and reboot task

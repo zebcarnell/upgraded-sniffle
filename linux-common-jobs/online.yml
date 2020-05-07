@@ -1,8 +1,8 @@
 ---
 - name: check machines online
-  become: 'yes'
+  become: true
   hosts: all
-  gather_facts: 'no'
+  gather_facts: false
 
   tasks:
   - name: check hosts online

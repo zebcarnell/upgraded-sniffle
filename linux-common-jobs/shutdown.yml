@@ -1,9 +1,9 @@
 ---
 - name: shutdown machines
-  become: 'yes'
+  become: true
   hosts: all
 
   tasks:
   - name: shutdown hosts
     command: shutdown -h now
-    ignore_errors: 'yes'
+    ignore_errors: true

@@ -1,6 +1,6 @@
 ---
 - name: restart machines
-  become: 'yes'
+  become: true
   hosts: all
 
   tasks:

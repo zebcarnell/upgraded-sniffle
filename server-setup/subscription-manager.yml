@@ -1,20 +1,23 @@
 ---
-- name: Register as user (xxxxx) with password (xxxxx), auto-subscribe to available content, upgrade and reboot
+- name: Auto-subscribe to available content, upgrade and reboot
   hosts: rhel
-  become: 'yes'
+  become: true
+  vars:
+    sub_user_name: xxxxx
+    sub_password: xxxxx
 
   tasks:
   - name: update redhat subscription
     redhat_subscription:
       state: present
-      username: xxxxx
-      password: xxxxx
-      auto_attach: 'true'
+      username: {{ sub_user_name }}
+      password: {{ subpassword }}
+      auto_attach: true
       syspurpose:
         usage: "Development/Test"
         role: "Red Hat Enterprise Linux Server"
         service_level_agreement: "Standard"
-        sync: 'true'
+        sync: true
 
   - name: update and upgrade
     yum:

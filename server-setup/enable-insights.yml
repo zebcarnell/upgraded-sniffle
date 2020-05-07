@@ -1,13 +1,13 @@
 ---
 - name: enable insights
-  become: 'yes'
+  become: true
   hosts: rhel
 
   tasks:
   - name: enable
     command: insights-client --register
-    ignore_errors: 'yes'
+    ignore_errors: true
 
   - name: enable
     command: insights-client --enable-schedule
-    ignore_errors: 'no'
+    ignore_errors: true
