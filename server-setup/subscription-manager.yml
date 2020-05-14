@@ -5,6 +5,10 @@
   vars:
     sub_user_name: xxxxx
     sub_password: xxxxx
+    usage: "Development/Test"
+    role: "Red Hat Enterprise Linux Server"
+    service_level_agreement: "Standard"
+    sync: true
 
   tasks:
   - name: update redhat subscription
@@ -14,10 +18,10 @@
       password: {{ subpassword }}
       auto_attach: true
       syspurpose:
-        usage: "Development/Test"
-        role: "Red Hat Enterprise Linux Server"
-        service_level_agreement: "Standard"
-        sync: true
+        usage: {{ usage }}
+        role: {{ role }}
+        service_level_agreement: {{ service_level_agreement }}
+        sync: {{ sync }}
 
   - name: update and upgrade
     yum:
