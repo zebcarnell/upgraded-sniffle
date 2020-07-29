@@ -1,0 +1,23 @@
+---
+- name: configure windows VMs
+  become: true
+  hosts: localhost
+
+  tasks:
+  - name: setup directories
+    file: 
+      path: /vms/
+      state: directory
+      mode: '0755'
+  
+  - name: setup directories 2
+    file: 
+      path: /vms/vm-templates/
+      state: directory
+      mode: '0755'
+  
+  - name: setup directories 3
+    file: 
+      path: /vms/win/
+      state: directory
+      mode: '0755'
