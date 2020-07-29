@@ -4,6 +4,9 @@
   hosts: localhost
 
   tasks:
+  - name: check online
+    ping:
+
   - name: setup directories
     file: 
       path: /vms/
