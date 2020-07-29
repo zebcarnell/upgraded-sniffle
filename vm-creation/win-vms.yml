@@ -54,7 +54,11 @@
       dest: /vms/templates/win1.xml
 
   - name: setup win1 image
-    command: virsh vol-create #win1 blah 
+    virt_pool:
+      command: define
+      name: win1
+      xml: /vms/templates/vol-win1.xml
+      state: active
 
   - name: define win1
     virt:
