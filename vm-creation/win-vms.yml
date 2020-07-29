@@ -1,5 +1,5 @@
 ---
-- name: configure windows VMs
+- name: configure and deploy windows VMs
   become: true
   hosts: localhost
 
