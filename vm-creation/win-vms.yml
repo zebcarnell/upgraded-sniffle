@@ -55,8 +55,8 @@
 
   - name: setup win1 image
     virt_pool:
-      command: define
-      name: default
+      command: create
+      name: vms
       xml: /vms/templates/vol-win1.xml
       state: active
 
