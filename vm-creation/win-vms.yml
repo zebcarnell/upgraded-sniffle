@@ -48,6 +48,11 @@
       url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/vol-win1-v3.xml
       dest: /vms/templates/vol-win1.xml
 
+  - name: copy unattended image
+    get_url: 
+      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/win-unattend.vfd
+      dest: /vms/templates/win-unattend.vfd
+
   # Add check first then do create pool
   - name: setup winvm pool
     command: virsh pool-define-as winvms --type dir --target /vms/vms/win/
