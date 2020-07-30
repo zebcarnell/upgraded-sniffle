@@ -8,11 +8,10 @@
   - name: check online
     ping:
 
-  - name: shutdown win1
+  - name: destory win1
     virt:
       command: destroy
       name: win1
-      state: running
 
   - name: undefine win1
     virt:
