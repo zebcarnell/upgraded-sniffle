@@ -84,7 +84,7 @@
                             <PlainText>false</PlainText>
                         </Password>
                         <Description>Primary account</Description>
-                        <DisplayName>Administrator</DisplayName>
+                        <DisplayName>admin</DisplayName>
                         <Group>Administrators</Group>
                         <Name>admin</Name>
                     </LocalAccount>
