@@ -1,0 +1,29 @@
+<volume type='file'>
+  <name>win2.qcow2</name>
+  <key>/vms/vms/win/win2.qcow2</key>
+  <source>
+  </source>
+  <capacity unit='bytes'>42949672960</capacity>
+  <allocation unit='bytes'>5721227264</allocation>
+  <physical unit='bytes'>42956488704</physical>
+  <target>
+    <path>/vms/vms/win/win2.qcow2</path>
+    <format type='qcow2'/>
+    <permissions>
+      <mode>0600</mode>
+      <owner>0</owner>
+      <group>0</group>
+      <label>system_u:object_r:virt_image_t:s0</label>
+    </permissions>
+    <timestamps>
+      <atime>1596002861.581243779</atime>
+      <mtime>1596002860.699239771</mtime>
+      <ctime>1596002860.939240861</ctime>
+    </timestamps>
+    <compat>1.1</compat>
+    <features>
+      <lazy_refcounts/>
+    </features>
+  </target>
+</volume>
+

@@ -43,14 +43,9 @@
       url: file:///isos/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso
       dest: /vms/isos/win2019.iso
 
-  - name: setup win1 VMs
-    get_url: 
-      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/vol-win1-v3.xml
-      dest: /vms/templates/vol-win1.xml
-
   - name: copy unattended image
     get_url: 
-      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/win-unattend.vfd
+      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/autounattend/win-unattend.vfd
       dest: /vms/isos/win-unattend.vfd
 
   # Add check first then do create pool
@@ -73,18 +68,43 @@
   - name: setup iso pool 4
     command: virsh pool-autostart isos
 
+
+#win1
+  - name: setup win1 VMs
+    get_url: 
+      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/vol-win1.xml
+      dest: /vms/templates/vol-win1.xml
+
   # Add check if volume already exists
   - name: setup win1 volume
     command: virsh vol-create winvms /vms/templates/vol-win1.xml
     
-
   - name: define win1
     virt:
       command: define
-      xml: "{{ lookup('template', 'templates/win1-v3.xml') }}"
+      xml: "{{ lookup('template', 'templates/win1.xml') }}"
   
   - name: start win1
     virt: 
       name: win1
       state: running
 
+#win2
+  - name: setup win2 VMs
+    get_url: 
+      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/vol-win2.xml
+      dest: /vms/templates/vol-win2.xml
+
+  # Add check if volume already exists
+  - name: setup win2 volume
+    command: virsh vol-create winvms /vms/templates/vol-win2.xml
+    
+  - name: define win2
+    virt:
+      command: define
+      xml: "{{ lookup('template', 'templates/win2.xml') }}"
+  
+  - name: start win2
+    virt: 
+      name: win2
+      state: running
