@@ -82,5 +82,9 @@
     virt:
       command: define
       xml: "{{ lookup('template', 'templates/win1-v3.xml') }}"
-      
-      
+  
+  - name: start win1
+    virt: 
+      name: win1
+      state: running
+
