@@ -14,10 +14,22 @@
       name: win1
     ignore_errors: true
 
+  - name: destory win2
+    virt:
+      command: destroy
+      name: win2
+    ignore_errors: true
+
   - name: undefine win1
     virt:
       command: undefine
       name: win1
+    ignore_errors: true
+
+  - name: undefine win2
+    virt:
+      command: undefine
+      name: win2
     ignore_errors: true
 
   # check if winvm pool exists 
