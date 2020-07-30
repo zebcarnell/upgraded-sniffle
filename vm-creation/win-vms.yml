@@ -38,10 +38,10 @@
       state: directory
       mode: '0755'
 
-  - name: get windows server 2019 installer
-    get_url: 
-      url: file:///isos/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso
-      dest: /vms/isos/win2019.iso
+  # - name: get windows server 2019 installer
+  #   get_url: 
+  #     url: file:///isos/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso
+  #     dest: /vms/isos/win2019.iso
 
   - name: setup win1 VMs
     get_url: 
