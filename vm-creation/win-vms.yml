@@ -53,7 +53,6 @@
       url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/win1-v3.xml
       dest: /vms/templates/win1.xml
 
-
   # Add check first then do create pool
 
   - name: setup winvm pool
@@ -68,6 +67,17 @@
   - name: setup win1 volume
     command: virsh vol-create winvms /vms/templates/vol-win1.xml
     
+    
+  - name: setup iso pool
+    command: virsh pool-define-as isos --type dir --target /vms/isos/
+  - name: setup iso pool 2
+    command: virsh pool-build isos
+  - name: setup iso pool 3
+    command: virsh pool-start isos
+  - name: setup iso pool 4
+    command: virsh pool-autostart isos
+    
+
 
   # - name: define win1
   #   virt:
