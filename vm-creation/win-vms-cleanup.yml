@@ -10,21 +10,14 @@
 
   - name: shutdown win1
     virt:
-      command: shutdown
-      name: win1
-      state: running
-
-  - name: destory win1
-    virt:
       command: destroy
       name: win1
-      state: shutdown
+      state: running
 
   - name: undefine win1
     virt:
       command: undefine
       name: win1
-      state: shutdown
 
   # check if winvm pool exists 
   - name: delete winvm pool
