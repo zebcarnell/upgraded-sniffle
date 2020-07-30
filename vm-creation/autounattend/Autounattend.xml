@@ -92,6 +92,15 @@
                     </LocalAccount>
                 </LocalAccounts>
             </UserAccounts>
+            <AutoLogon>
+                <Password>
+                    <Value>YwBvAG0AcAB1AHQAZQByADgAUABhAHMAcwB3AG8AcgBkAA==</Value>
+                    <PlainText>false</PlainText>
+                </Password>
+                <Enabled>true</Enabled>
+                <Username>admin</Username>
+                <LogonCount>2</LogonCount>
+            </AutoLogon>
         </component>
     </settings>
     <cpi:offlineImage cpi:source="catalog://awp-desktop/ddownloads/install_windows server 2019 serverstandardcore.clg" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
