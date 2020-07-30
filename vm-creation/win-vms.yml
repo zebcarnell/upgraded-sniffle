@@ -8,9 +8,10 @@
   - name: check online
     ping:
 
+# Prepare directories
   - name: setup directories
     file: 
-      path: /vms/
+      path: /vms/vms/win/
       state: directory
       mode: '0755'
   
@@ -19,35 +20,15 @@
       path: /vms/templates/
       state: directory
       mode: '0755'
-  
+
   - name: setup directories 3
-    file: 
-      path: /vms/vms/
-      state: directory
-      mode: '0755'
-
-  - name: setup directories 4
-    file: 
-      path: /vms/vms/win/
-      state: directory
-      mode: '0755'
-
-  - name: setup directories 5
     file: 
       path: /vms/isos/
       state: directory
       mode: '0755'
 
-  - name: get windows server 2019 installer
-    get_url: 
-      url: file:///isos/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso
-      dest: /vms/isos/win2019.iso
 
-  - name: copy unattended image
-    get_url: 
-      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/autounattend/win-unattend.vfd
-      dest: /vms/isos/win-unattend.vfd
-
+# Prepare Pools
   # Add check first then do create pool
   - name: setup winvm pool
     command: virsh pool-define-as winvms --type dir --target /vms/vms/win/
@@ -69,8 +50,19 @@
     command: virsh pool-autostart isos
 
 
+#Get Images
+  - name: get windows server 2019 installer
+    get_url: 
+      url: file:///isos/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso
+      dest: /vms/isos/win2019.iso
+
+  - name: copy unattended image
+    get_url: 
+      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/autounattend/win-unattend.vfd
+      dest: /vms/isos/win-unattend.vfd
+
 #win1
-  - name: setup win1 VMs
+  - name: download win1 volume xml
     get_url: 
       url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/vol-win1.xml
       dest: /vms/templates/vol-win1.xml
@@ -90,7 +82,7 @@
       state: running
 
 #win2
-  - name: setup win2 VMs
+  - name: download win2 volume xml
     get_url: 
       url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/vol-win2.xml
       dest: /vms/templates/vol-win2.xml
