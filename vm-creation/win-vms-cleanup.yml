@@ -8,6 +8,12 @@
   - name: check online
     ping:
 
+  - name: shutdown win1
+    virt:
+      command: shutdown
+      name: win1
+      state: running
+
   - name: destory win1
     virt:
       command: destroy
@@ -18,6 +24,7 @@
     virt:
       command: undefine
       name: win1
+      state: shutdown
 
   # check if winvm pool exists 
   - name: delete winvm pool
