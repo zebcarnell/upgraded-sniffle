@@ -45,12 +45,12 @@
 
   - name: setup win1 VMs
     get_url: 
-      url: file:///var/lib/awx/projects/_8__upgradedsniffle/templates/vol-win1-v3.xml
+      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/vol-win1-v3.xml
       dest: /vms/templates/vol-win1.xml
 
   - name: setup win1 VMs 2
     get_url: 
-      url: file:///var/lib/awx/projects/_8__upgradedsniffle/templates/win1-v3.xml
+      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/win1-v3.xml
       dest: /vms/templates/win1.xml
 
   - name: setup win1 image
