@@ -53,6 +53,9 @@
       url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/win1-v3.xml
       dest: /vms/templates/win1.xml
 
+
+  # Add check first then do create pool
+
   - name: setup winvm pool
     command: virsh pool-define-as winvms --type dir --target /vms/vms/win/
   - name: setup winvm pool 2
@@ -70,4 +73,4 @@
   #   virt:
   #     command: define
   #     xml: /vms/templates/win1.xml
-  #     autostart: yes
+  #     autostart: no
