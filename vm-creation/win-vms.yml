@@ -1,0 +1,90 @@
+---
+- name: configure and deploy windows VMs
+  become: true
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: check online
+    ping:
+
+  - name: setup directories
+    file: 
+      path: /vms/
+      state: directory
+      mode: '0755'
+  
+  - name: setup directories 2
+    file: 
+      path: /vms/templates/
+      state: directory
+      mode: '0755'
+  
+  - name: setup directories 3
+    file: 
+      path: /vms/vms/
+      state: directory
+      mode: '0755'
+
+  - name: setup directories 4
+    file: 
+      path: /vms/vms/win/
+      state: directory
+      mode: '0755'
+
+  - name: setup directories 5
+    file: 
+      path: /vms/isos/
+      state: directory
+      mode: '0755'
+
+  - name: get windows server 2019 installer
+    get_url: 
+      url: file:///isos/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso
+      dest: /vms/isos/win2019.iso
+
+  - name: setup win1 VMs
+    get_url: 
+      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/vol-win1-v3.xml
+      dest: /vms/templates/vol-win1.xml
+
+  - name: copy unattended image
+    get_url: 
+      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/win-unattend.vfd
+      dest: /vms/isos/win-unattend.vfd
+
+  # Add check first then do create pool
+  - name: setup winvm pool
+    command: virsh pool-define-as winvms --type dir --target /vms/vms/win/
+  - name: setup winvm pool 2
+    command: virsh pool-build winvms
+  - name: setup winvm pool 3
+    command: virsh pool-start winvms
+  - name: setup winvm pool 4
+    command: virsh pool-autostart winvms
+  
+  # Add check first then create pool
+  - name: setup iso pool
+    command: virsh pool-define-as isos --type dir --target /vms/isos/
+  - name: setup iso pool 2
+    command: virsh pool-build isos
+  - name: setup iso pool 3
+    command: virsh pool-start isos
+  - name: setup iso pool 4
+    command: virsh pool-autostart isos
+
+  # Add check if volume already exists
+  - name: setup win1 volume
+    command: virsh vol-create winvms /vms/templates/vol-win1.xml
+    
+
+  - name: define win1
+    virt:
+      command: define
+      xml: "{{ lookup('template', 'templates/win1-v3.xml') }}"
+  
+  - name: start win1
+    virt: 
+      name: win1
+      state: running
+
