@@ -12,24 +12,20 @@
     virt:
       command: destroy
       name: win1
+    ignore_errors: true
 
   - name: undefine win1
     virt:
       command: undefine
       name: win1
-
-  - name: destory win1
-    virt:
-      command: destroy
-      name: win1
-      state: running
+    ignore_errors: true
 
   # check if winvm pool exists 
   - name: delete winvm pool
     command: virsh pool-destroy winvms
   - name: delete winvm pool 3
     command: virsh pool-undefine winvms
-
+  
   # check if winvm pool exists
   - name: delete iso pool
     command: virsh pool-destroy isos
