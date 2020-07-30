@@ -57,7 +57,6 @@
     virt_pool:
       command: create
       name: vms
-      xml: /vms/templates/vol-win1.xml
       state: active
 
   - name: define win1
