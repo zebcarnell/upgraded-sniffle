@@ -78,9 +78,9 @@
     command: virsh pool-autostart isos
     
 
-
-  # - name: define win1
-  #   virt:
-  #     command: define
-  #     xml: /vms/templates/win1.xml
-  #     autostart: no
+  - name: define win1
+    virt:
+      command: define
+      xml: "{{ lookup('template', 'templates/win1-v3.xml') }}"
+      
+      
