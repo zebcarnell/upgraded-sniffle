@@ -18,6 +18,12 @@
       command: undefine
       name: win1
 
+  - name: destory win1
+    virt:
+      command: destroy
+      name: win1
+      state: running
+
   # check if winvm pool exists 
   - name: delete winvm pool
     command: virsh pool-destroy winvms
