@@ -63,7 +63,7 @@
     </disk>
     <disk type='file' device='floppy'>
       <!-- <driver name='qemu' type='raw'/> -->
-      <source file='/vms/templates/win-unattend.vfd'/>
+      <source file='/vms/isos/win-unattend.vfd'/>
       <target dev='fda' bus='fdc'/>
       <readonly/>
       <!-- <address type='drive' controller='0' bus='0' target='0' unit='2'/> -->

@@ -51,7 +51,7 @@
   - name: copy unattended image
     get_url: 
       url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/win-unattend.vfd
-      dest: /vms/templates/win-unattend.vfd
+      dest: /vms/isos/win-unattend.vfd
 
   # Add check first then do create pool
   - name: setup winvm pool
