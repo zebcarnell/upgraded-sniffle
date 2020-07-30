@@ -75,6 +75,8 @@
                 <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
                 <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
                 <ProtectYourPC>1</ProtectYourPC>
+                <HideLocalAccountScreen>true</HideLocalAccountScreen>
+                <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
             </OOBE>
             <UserAccounts>
                 <LocalAccounts>
