@@ -54,7 +54,7 @@
       dest: /vms/templates/win1.xml
 
   - name: setup win1 pool
-    command: virsh pool-define winvms dir - - - - "/vms/vms/win/"
+    command: virsh pool-define winvms /vms/vms/win/
   - name: setup win1 pool 2
     command: virsh pool-build winvms
   - name: setup win1 pool 3
