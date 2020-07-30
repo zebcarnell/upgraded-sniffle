@@ -20,15 +20,11 @@
 
   - name: delete winvm pool
     command: virsh pool-destroy winvms
-  - name: delete winvm pool 2
-    command: virsh pool-delete winvms
   - name: delete winvm pool 3
     command: virsh pool-undefine winvms
 
   - name: delete iso pool
     command: virsh pool-destroy isos
-  - name: delete iso pool 2
-    command: virsh pool-delete isos
   - name: delete iso pool 3
     command: virsh pool-undefine isos
 
