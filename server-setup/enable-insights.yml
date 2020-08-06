@@ -4,10 +4,10 @@
   hosts: all 
 
   tasks:
-  - name: enable
+  - name: register insights
     command: insights-client --register
     ignore_errors: true
 
-  - name: enable
+  - name: enable insights schedule
     command: insights-client --enable-schedule
     ignore_errors: true

@@ -1,0 +1,9 @@
+---
+- name: check machines online
+  become: true
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: check hosts online
+    win_ping:
