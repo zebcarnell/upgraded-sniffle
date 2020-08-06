@@ -2,7 +2,6 @@
 <unattend xmlns="urn:schemas-microsoft-com:unattend">
     <settings pass="windowsPE">
         <component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <SetupUILanguage />
             <InputLocale>en-US</InputLocale>
             <SystemLocale>en-US</SystemLocale>
             <UILanguage>en-US</UILanguage>
@@ -99,8 +98,19 @@
                 </Password>
                 <Enabled>true</Enabled>
                 <Username>admin</Username>
-                <LogonCount>2</LogonCount>
+                <LogonCount>5</LogonCount>
             </AutoLogon>
+        </component>
+    </settings>
+    <settings pass="specialize">
+        <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <RunSynchronous>
+                <RunSynchronousCommand wcm:action="add">
+                    <Path>powershell -ExecutionPolicy Bypass -File A:\winssh.ps1</Path>
+                    <Order>1</Order>
+                    <Description>setup OpenSSH</Description>
+                </RunSynchronousCommand>
+            </RunSynchronous>
         </component>
     </settings>
     <cpi:offlineImage cpi:source="catalog://awp-desktop/ddownloads/install_windows server 2019 serverstandardcore.clg" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
