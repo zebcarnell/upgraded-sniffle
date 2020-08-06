@@ -1,7 +1,7 @@
 ---
 - name: enable insights
   become: true
-  hosts: rhel
+  hosts: all
 
   tasks:
   - name: enable
