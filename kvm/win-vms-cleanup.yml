@@ -45,6 +45,11 @@
     command: virsh pool-undefine isos
 
   - name: delete directories
-    file: 
+    file:
       path: /vms/
+      state: absent
+
+  - name: delete known_hosts
+    file:
+      path: /home/awp/known_hosts
       state: absent
