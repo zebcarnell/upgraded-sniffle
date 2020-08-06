@@ -5,6 +5,9 @@
   gather_facts: false
 
   tasks:
+  - name: check online
+    ping:
+
 #win1
   - name: start win1
     virt: 
