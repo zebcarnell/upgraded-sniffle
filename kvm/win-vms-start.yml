@@ -1,0 +1,18 @@
+---
+- name: start win vms
+  become: true
+  hosts: all
+  gather_facts: false
+
+  tasks:
+#win1
+  - name: start win1
+    virt: 
+      name: win1
+      state: running
+
+#win2
+  - name: start win2
+    virt: 
+      name: win2
+      state: running

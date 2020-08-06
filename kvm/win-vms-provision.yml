@@ -58,13 +58,13 @@
 
   - name: copy unattended image
     get_url: 
-      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/autounattend/win-unattend.vfd
+      url: file:///var/lib/awx/projects/_8__upgradedsniffle/kvm/autounattend/win-unattend.vfd
       dest: /vms/isos/win-unattend.vfd
 
 #win1
   - name: download win1 volume xml
     get_url: 
-      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/vol-win1.xml
+      url: file:///var/lib/awx/projects/_8__upgradedsniffle/kvm/templates/vol-win1.xml
       dest: /vms/templates/vol-win1.xml
 
   # Add check if volume already exists
@@ -84,7 +84,7 @@
 #win2
   - name: download win2 volume xml
     get_url: 
-      url: file:///var/lib/awx/projects/_8__upgradedsniffle/vm-creation/templates/vol-win2.xml
+      url: file:///var/lib/awx/projects/_8__upgradedsniffle/kvm/templates/vol-win2.xml
       dest: /vms/templates/vol-win2.xml
 
   # Add check if volume already exists
