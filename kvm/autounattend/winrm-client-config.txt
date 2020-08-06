@@ -1,5 +1,0 @@
-Set-Item -Path "WSMan:\localhost\client\AllowUnecrypted" -Value $true
-Set-Item -Path "WSMan:\localhost\client\TrustedHosts" -Value "192.168.122.194, 192.168.122.195, 192.168.122.1"
-Win32 OpenSSH
-https://github.com/PowerShell/Win32-OpenSSH/releases/download/v8.1.0.0p1-Beta/OpenSSH-Win64.zip
-
