@@ -6,6 +6,8 @@ Param (
     )
 
 New-Item -Path "c:\" -Name "OpenSSH" -ItemType "directory" -Force
+
+Start-Transcript -Path C:\OpenSSH\log.txt -Force -noClobber -Append
 Invoke-WebRequest -Uri $url -OutFile $output
 Write-Output "File Downloaded"
 Expand-Archive -LiteralPath C:\OpenSSH\OpenSSH-Win64.zip -DestinationPath C:\OpenSSH\
@@ -14,3 +16,5 @@ powershell.exe -ExecutionPolicy Bypass -File C:\OpenSSH\OpenSSH-Win64\install-ss
 New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
 net start sshd
 Set-Service sshd -StartupType Automatic
+
+Stop-Transcript
