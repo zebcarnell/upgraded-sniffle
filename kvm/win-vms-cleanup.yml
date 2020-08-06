@@ -48,3 +48,8 @@
     file: 
       path: /vms/
       state: absent
+
+  - name: delete known_hosts
+    file:
+      path: ~/.ssh/known_hosts
+      state: absent
