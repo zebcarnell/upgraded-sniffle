@@ -48,5 +48,3 @@
     file: 
       path: /vms/
       state: absent
-
-
