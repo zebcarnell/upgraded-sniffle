@@ -6,7 +6,7 @@
 
   tasks:
   - name: check online
-    ping:
+    win_ping:
 
   - name: Install 7-Zip
     win_chocolatey:
