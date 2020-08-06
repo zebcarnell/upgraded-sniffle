@@ -2,8 +2,12 @@
 - name: shutdown machines
   become: true
   hosts: all
-
+  gather_facts: false
+  
   tasks:
+  - name: check hosts online
+    ping:
+
   - name: shutdown hosts
     command: shutdown -h now
     ignore_errors: true
