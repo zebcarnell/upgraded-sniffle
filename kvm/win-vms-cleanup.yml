@@ -51,5 +51,5 @@
 
   - name: delete known_hosts
     file:
-      path: /home/awp/known_hosts
+      path: /home/awp/.ssh/known_hosts
       state: absent
