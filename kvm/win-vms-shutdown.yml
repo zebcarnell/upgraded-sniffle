@@ -9,13 +9,13 @@
     ping:
 
 #win1
-  - name: start win1
+  - name: shutdown win1
     virt: 
       name: win1
       state: shutdown
 
 #win2
-  - name: start win2
+  - name: shutdown win2
     virt: 
       name: win2
       state: shutdown
