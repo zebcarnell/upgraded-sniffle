@@ -84,7 +84,7 @@
 #win2
   - name: download win2 volume xml
     get_url: 
-      url: file:///var/lib/awx/projects/_8__upgradedsniffle/kvm/templates/vol-win2.xml
+      url: file:///var/lib/awx/projects/_8__upgraded_sniffle/kvm/templates/vol-win2.xml
       dest: /vms/templates/vol-win2.xml
 
   # Add check if volume already exists
