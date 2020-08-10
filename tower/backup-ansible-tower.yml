@@ -6,6 +6,6 @@
 
   tasks:
   - name: backup
-    command: ./home/awp/Downloads/ansible-tower-setup-3.7.2-1/setup.sh -e 'backup_dest=/path/to/backup_dir/' -b
+    command: ./home/awp/Downloads/ansible-tower-setup-3.7.2-1/setup.sh -e 'backup_dest=/home/awp/backups/' -b
 
 
