@@ -1,0 +1,11 @@
+---
+- name: backup ansible tower
+  become: true
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: backup
+    command: ./home/awp/Downloads/ansible-tower-setup-3.7.2-1/setup.sh -e 'backup_dest=/path/to/backup_dir/' -b
+
+
