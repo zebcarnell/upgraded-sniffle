@@ -5,7 +5,8 @@
   gather_facts: false
 
   tasks:
-  - name: backup
-    command: ./home/awp/Downloads/ansible-tower-setup-3.7.2-1/setup.sh -e 'backup_dest=/home/awp/backups/' -b
+  - name: check hosts online
+    ping:
 
-
+  - name: backup tower
+    command: sh ./home/awp/Downloads/ansible-tower-setup-3.7.2-1/setup.sh -e 'backup_dest=/home/awp/backups/' -b
