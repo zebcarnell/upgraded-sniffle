@@ -13,7 +13,7 @@
 # Identifier: (advisor:aws_cloud_init_support_for_imdsv2|AWS_EC2_USING_IMDSV1,fix)
 # Version: 31133ab7e69e61808da8368a1778589f586cd83b
 - name: Update cloud-init package to 18.5-6 or above (RHEL7) and 19.4 or above (RHEL7.9 or later)
-  hosts: "ip-172-31-3-183.ap-southeast-2.compute.internal"
+  hosts: "downgradedsniffle.ddns.net"
   become: true
 
   tasks:
@@ -33,7 +33,7 @@
 
 
 - name: run insights
-  hosts: "ip-172-31-3-183.ap-southeast-2.compute.internal"
+  hosts: "downgradedsniffle.ddns.net"
   become: True
   gather_facts: False
   tasks:
