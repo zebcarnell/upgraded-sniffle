@@ -31,7 +31,6 @@
             name: cloud-init
             state: latest
 
-
 - name: run insights
   hosts: "downgradedsniffle.ddns.net"
   become: True
