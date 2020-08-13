@@ -13,7 +13,7 @@
     virt: 
       name: win1
       state: shutdown
-
+  
 #win2
   - name: shutdown win2
     virt: 
