@@ -1,0 +1,41 @@
+---
+- name: Install an OpenShift Cluster on AWS
+  hosts: all
+  become: true
+  vars:
+    pull_secret: 'xxxxx'
+    sshkey: 'xxxxx'
+    aws_access_key_id: 'xxxxx'
+    aws_secret_access_key: 'xxxxx'
+
+  tasks:
+  - name: make local directories
+
+  - name: download installer 4.5 to directory
+    #complete this
+    file: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.5.5/openshift-install-linux.tar.gz 
+
+  - name: copy install config from GIT repo in awx project to the local directory
+  
+  - name: update install config file with pull secret
+    #insert into install-config.yml
+    filesomething:
+      value: {{ pull_secret }}
+
+  - name: update install config file with pull secret
+    filesomething: #insert into install-config.yml
+      value: {{ sshkey }}
+
+  - name: setup AWS profile
+    filesomething: /home/awp/.aws/credentials
+      "; https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html
+      [default]
+      aws_access_key_id     = 
+      aws_secret_access_key = "
+
+  - name: populate AWS credentials file with id and key
+    #do something
+
+  - name: install cluster
+    command: sh openshift-install create cluster --dir=install
+
