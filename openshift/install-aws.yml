@@ -1,3 +1,4 @@
+# DRAFT UNTESTED
 ---
 - name: Install an OpenShift Cluster on AWS
   hosts: all
