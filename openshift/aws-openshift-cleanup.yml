@@ -21,7 +21,7 @@
   - name: Compress directory /path/to/foo/ into /path/to/foo.tgz
     archive:
       path: /openshiftprovision/install
-      dest: ~/openshiftprovisionbackups/installbackup.{{ ansible_date_time }}.tar.gz
+      dest: ~/openshiftprovisionbackups/installbackup.{{ ansible_date_time.date }}.{{ ansible_date_time.date }}.tar.gz
       format: gz
 
   - name: delete openshift directories
