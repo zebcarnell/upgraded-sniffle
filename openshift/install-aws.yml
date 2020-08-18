@@ -4,10 +4,14 @@
   hosts: all
   become: true
   vars:
-    pull_secret: 'xxxxx'
-    sshkey: 'xxxxx'
-    aws_access_key_id: 'xxxxx'
-    aws_secret_access_key: 'xxxxx'
+    cluster_name:           'name'
+    base_domain:            'base.domain.com'
+    region:                 'ap-southeast-2'
+    worker_replicas:        '2' 
+    pull_secret:            '{"auths":{"cloud.openshift.com":{"auth":"blahblah"}}}'
+    sshkey:                 'ssh-rsa blahblah'
+    aws_access_key_id:      'blahblah'
+    aws_secret_access_key:  'blahblahblah'
 
   tasks:
   - name: check online
@@ -18,8 +22,7 @@
       path: /openshiftprovision/install/
       state: directory
       mode: '0755'
-
-  - name: setup directories2
+  - name: setup directories 2
     file: 
       path: ~/.aws/
       state: directory
@@ -31,28 +34,72 @@
       dest: /openshiftprovision/
       remote_src: yes
 
-  - name: get install-config.yaml
-    get_url: 
-      url: file:///var/lib/awx/projects/_8__upgraded_sniffle/openshift/aws/install-config.yaml
-      dest: /openshiftprovision/install/install-config.yaml
+  # - name: get install-config.yaml
+  #   get_url: 
+  #     url: file:///var/lib/awx/projects/_8__upgraded_sniffle/openshift/aws/install-config.yaml
+  #     dest: /openshiftprovision/install/install-config.yaml
   
-  - name: update install config file with pull secret
-    lineinfile:
-      backup: 1
-      path: /openshiftprovision/install/install-config.yaml
-      line: "pullSecret: '{{ pull_secret }}'"
+  # - name: update install config file with pull secret
+  #   lineinfile:
+  #     backup: 1
+  #     path: /openshiftprovision/install/install-config.yaml
+  #     line: "pullSecret: '{{ pull_secret }}'"
 
-  - name: update install config file with ssh public key
-    lineinfile:
-      backup: 1
-      path: /openshiftprovision/install/install-config.yaml
-      line: "sshKey: |"
+  # - name: update install config file with ssh public key
+  #   lineinfile:
+  #     backup: 1
+  #     path: /openshiftprovision/install/install-config.yaml
+  #     line: "sshKey: |"
+  # - name: update install config file with ssh public key 2
+  #   lineinfile:
+  #     backup: 1
+  #     path: /openshiftprovision/install/install-config.yaml
+  #     line: "  {{ sshkey }}"
   - name: update install config file with ssh public key 2
-    lineinfile:
+    blockinfile:
       backup: 1
+      create: 1
       path: /openshiftprovision/install/install-config.yaml
-      line: "  {{ sshkey }}"
+      block: |
+        apiVersion: v1
+        baseDomain: {{ base_domain }}
+        compute:
+        - architecture: amd64
+          hyperthreading: Enabled
+          name: worker
+          platform: 
+            aws:
+              type: m5.large
+          replicas: {{ worker_replicas }}
+        controlPlane:
+          architecture: amd64
+          hyperthreading: Enabled
+          name: master
+          platform: 
+            aws:
+              type: m5.xlarge
+          replicas: 3
+        metadata:
+          creationTimestamp: null
+          name: {{ cluster_name }}
+        networking:
+          clusterNetwork:
+          - cidr: 10.128.0.0/14
+            hostPrefix: 23
+          machineNetwork:
+          - cidr: 10.0.0.0/16
+          networkType: OpenShiftSDN
+          serviceNetwork:
+          - 172.30.0.0/16
+        platform:
+          aws:
+            region: {{ region }}
+        publish: External
+        pullSecret: '{{ pull_secret }}'
+        sshKey: |
+          {{ sshkey }}
 
+# need to do this as seperate lines so block markers aren't added
   - name: create AWS profile
     lineinfile:
       backup: 1
