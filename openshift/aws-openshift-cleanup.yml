@@ -29,8 +29,7 @@
   - name: backup the cluster install configurations and metadata
     archive:
       path: /openshiftprovision/install
-      dest: ~/openshiftprovisionbackups/teardown-backup.{{ ansible_date_time.iso8601_micro }}.tar.gz
-      format: gz
+      dest: ~/openshiftprovisionbackups/teardown-backup.{{ ansible_date_time.iso8601_basic_short }}.tgz
 
   - name: delete openshift directories
     file: 
