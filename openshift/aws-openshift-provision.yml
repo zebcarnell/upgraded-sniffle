@@ -118,4 +118,4 @@
   - name: backup the cluster install configurations and metadata
     archive:
       path: /openshiftprovision/install
-      dest: ~/openshiftprovisionbackups/install-backup.{{ ansible_date_time.iso8601_basic_short }}.tgz
+      dest: ~/backups/openshiftprovisionbackups/install-backup.{{ ansible_date_time.iso8601_basic_short }}.tgz

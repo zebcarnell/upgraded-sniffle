@@ -8,5 +8,11 @@
   - name: check hosts online
     ping:
 
+  - name: backup directory if it doesn't exist
+    file: 
+      path: ~/backups/ansible/
+      state: directory
+      mode: '0755'
+
   - name: backup tower
-    command: sh /home/awp/Downloads/ansible-tower-setup-3.7.2-1/setup.sh -e 'backup_dest=/home/awp/backups/' -b
+    command: sh ~/ansible-tower-setup-3.7.2-1/setup.sh -e 'backup_dest=~/backups/ansible' -b
