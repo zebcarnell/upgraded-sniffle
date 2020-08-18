@@ -1,0 +1,35 @@
+# DRAFT UNTESTED
+---
+- name: Install an OpenShift Cluster on AWS
+  hosts: all
+  become: true
+
+  tasks:
+  - name: check online
+    ping:
+
+  # disabled temporaily
+  - name: destroy cluster
+    command: /openshiftprovision/openshift-install destroy cluster --help #--dir=/openshiftprovision/install --log-level=info
+
+  - name: setup backup directory if it doesn't exist
+    file: 
+      path: ~/openshiftprovisionbackups/
+      state: directory
+      mode: '0755'
+
+  - name: Compress directory /path/to/foo/ into /path/to/foo.tgz
+    archive:
+      path: /openshiftprovision/install
+      dest: ~/openshiftprovisionbackups/installbackup.{{ ansible_date_time }}.tar.gz
+      format: gz
+
+  - name: delete openshift directories
+    file: 
+      path: /openshiftprovision
+      state: absent
+
+  - name: delete aws credentials
+    file: 
+      path: ~/.aws/credentials
+      state: absent

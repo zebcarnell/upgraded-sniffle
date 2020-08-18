@@ -4,10 +4,10 @@
   hosts: all
   become: true
   vars:
-    cluster_name:           'name'
-    base_domain:            'base.domain.com'
+    cluster_name:           'ocp'
+    base_domain:            'domain.com'
     region:                 'ap-southeast-2'
-    worker_replicas:        '2' 
+    worker_replicas:        '2'
     pull_secret:            '{"auths":{"cloud.openshift.com":{"auth":"blahblah"}}}'
     sshkey:                 'ssh-rsa blahblah'
     aws_access_key_id:      'blahblah'
@@ -17,45 +17,24 @@
   - name: check online
     ping:
 
-  - name: setup directories
+  - name: setup openshift directories
     file: 
       path: /openshiftprovision/install/
       state: directory
       mode: '0755'
-  - name: setup directories 2
+  - name: setup aws credentials directory
     file: 
       path: ~/.aws/
       state: directory
       mode: '0755'
 
-  - name: download installer 4.5 to directory and extract
+  - name: download installer 4.5 and extract
     unarchive:
       src: file:///isos/openshift-install-linux.tar.gz
       dest: /openshiftprovision/
       remote_src: yes
 
-  # - name: get install-config.yaml
-  #   get_url: 
-  #     url: file:///var/lib/awx/projects/_8__upgraded_sniffle/openshift/aws/install-config.yaml
-  #     dest: /openshiftprovision/install/install-config.yaml
-  
-  # - name: update install config file with pull secret
-  #   lineinfile:
-  #     backup: 1
-  #     path: /openshiftprovision/install/install-config.yaml
-  #     line: "pullSecret: '{{ pull_secret }}'"
-
-  # - name: update install config file with ssh public key
-  #   lineinfile:
-  #     backup: 1
-  #     path: /openshiftprovision/install/install-config.yaml
-  #     line: "sshKey: |"
-  # - name: update install config file with ssh public key 2
-  #   lineinfile:
-  #     backup: 1
-  #     path: /openshiftprovision/install/install-config.yaml
-  #     line: "  {{ sshkey }}"
-  - name: update install config file with ssh public key 2
+  - name: create the install-config.yaml
     blockinfile:
       backup: 1
       create: 1
@@ -100,25 +79,25 @@
           {{ sshkey }}
 
 # need to do this as seperate lines so block markers aren't added
-  - name: create AWS profile
+  - name: create AWS credentials file
     lineinfile:
       backup: 1
       create: 1
       path: ~/.aws/credentials
       line: "; https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html"
-  - name: create AWS profile 2
+  - name: add default line to AWS credentials file
     lineinfile:
       path: ~/.aws/credentials
       line: "[default]"
-  - name: create AWS profile 3
+  - name: add access ID to AWS credentials file
     lineinfile:
       path: ~/.aws/credentials
       line: "aws_access_key_id     = {{ aws_access_key_id }}"
-  - name: create AWS profile 4
+  - name: add access key to AWS credentials file
     lineinfile:
       path: ~/.aws/credentials
       line: "aws_secret_access_key = {{ aws_secret_access_key }}"
-        
-  # - name: install cluster
-  #   command: ./openshiftprovision/openshift-install create cluster --dir=/openshiftprovision/install
-
+  
+  # disabled temporaily (added --help)
+  - name: install cluster
+    command: /openshiftprovision/openshift-install create cluster --help #--dir=/openshiftprovision/install --log-level=info
