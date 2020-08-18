@@ -40,7 +40,7 @@
     lineinfile:
       backup: 1
       path: /openshiftprovision/install/install-config.yaml
-      line: "pullSecret: '{{ pull_secret }}''"
+      line: "pullSecret: '{{ pull_secret }}'"
 
   - name: update install config file with ssh public key
     lineinfile:
