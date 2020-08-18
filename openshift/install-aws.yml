@@ -27,26 +27,26 @@
 
   - name: download installer 4.5 to directory and extract
     unarchive:
-      src: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.5.5/openshift-install-linux.tar.gz
+      src: file:///isos/openshift-install-linux.tar.gz
       dest: /openshiftprovision/
       remote_src: yes
 
   - name: get install-config.yaml
     get_url: 
-      url: file:///var/lib/awx/projects/_8__upgraded_sniffle/openshift/aws/install-config.yml
-      dest: /openshiftprovision/install/install-config.yml
+      url: file:///var/lib/awx/projects/_8__upgraded_sniffle/openshift/aws/install-config.yaml
+      dest: /openshiftprovision/install/install-config.yaml
   
   - name: update install config file with pull secret
     blockinfile:
       backup: 1
-      path: /openshiftprovision/install/install-config.yml
+      path: /openshiftprovision/install/install-config.yaml
       block: |
         pullSecret: {{ pull_secret }}
 
   - name: update install config file with ssh public key
     blockinfile:
       backup: 1
-      path: /openshiftprovision/install/install-config.yml
+      path: /openshiftprovision/install/install-config.yaml
       block: |
         sshKey: |
           {{ sshkey }} 
