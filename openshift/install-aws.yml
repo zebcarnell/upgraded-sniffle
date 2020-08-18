@@ -10,33 +10,58 @@
     aws_secret_access_key: 'xxxxx'
 
   tasks:
-  - name: make local directories
+  - name: check online
+    ping:
 
-  - name: download installer 4.5 to directory
-    #complete this
-    file: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.5.5/openshift-install-linux.tar.gz 
+  - name: setup directories
+    file: 
+      path: /openshiftprovision/install/
+      state: directory
+      mode: '0755'
 
-  - name: copy install config from GIT repo in awx project to the local directory
+  - name: setup directories2
+    file: 
+      path: ~/.aws/
+      state: directory
+      mode: '0755'
+
+  - name: download installer 4.5 to directory and extract
+    unarchive:
+      src: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.5.5/openshift-install-linux.tar.gz
+      dest: /openshiftprovision/
+      remote_src: yes
+
+  - name: get install-config.yaml
+    get_url: 
+      url: file:///var/lib/awx/projects/_8__upgraded_sniffle/openshift/aws/install-config.yml
+      dest: /openshiftprovision/install/install-config.yml
   
   - name: update install config file with pull secret
-    #insert into install-config.yml
-    filesomething:
-      value: {{ pull_secret }}
+    blockinfile:
+      backup: 1
+      path: /openshiftprovision/install/install-config.yml
+      block: |
+        pullSecret: {{ pull_secret }}
 
-  - name: update install config file with pull secret
-    filesomething: #insert into install-config.yml
-      value: {{ sshkey }}
+  - name: update install config file with ssh public key
+    blockinfile:
+      backup: 1
+      path: /openshiftprovision/install/install-config.yml
+      block: |
+        sshKey: |
+          {{ sshkey }} 
 
-  - name: setup AWS profile
-    filesomething: /home/awp/.aws/credentials
-      "; https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html
-      [default]
-      aws_access_key_id     = 
-      aws_secret_access_key = "
+  - name: create AWS profile
+    blockinfile:
+      backup: 1
+      create: 1
+      path: ~/.aws/credentials
+      block: |
+        ; https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html
+        [default]
+        aws_access_key_id     = {{ aws_access_key_id }}
+        aws_secret_access_key = {{ aws_secret_access_key }}
 
-  - name: populate AWS credentials file with id and key
-    #do something
-
-  - name: install cluster
-    command: sh openshift-install create cluster --dir=install
+  # - name: install cluster
+  #   command: ./openshiftprovision/openshift-install create cluster --dir=/openshiftprovision/install
 

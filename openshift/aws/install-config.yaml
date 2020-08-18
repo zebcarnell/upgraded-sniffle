@@ -1,4 +1,4 @@
-# DRAFT UNTESTED
+# DRAFT
 apiVersion: v1
 baseDomain: aws.zeb.nz
 compute:
@@ -19,7 +19,7 @@ controlPlane:
   replicas: 3
 metadata:
   creationTimestamp: null
-  name: zeb
+  name: ocp
 networking:
   clusterNetwork:
   - cidr: 10.128.0.0/14
@@ -33,9 +33,3 @@ platform:
   aws:
     region: ap-southeast-2
 publish: External
-
-#populate pullsecret
-pullSecret: ''
-#populate ssh public
-sshKey: |
-  
