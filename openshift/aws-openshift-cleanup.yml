@@ -12,16 +12,16 @@
   - name: destroy cluster
     command: /openshiftprovision/openshift-install destroy cluster --help #--dir=/openshiftprovision/install --log-level=info
 
-  - name: setup backup directory if it doesn't exist
+  - name: create destroyer backup directory if it doesn't exist
     file: 
       path: ~/openshiftprovisionbackups/
       state: directory
       mode: '0755'
 
-  - name: Compress directory /path/to/foo/ into /path/to/foo.tgz
+  - name: backup the cluster install configurations and metadata
     archive:
       path: /openshiftprovision/install
-      dest: ~/openshiftprovisionbackups/installbackup.{{ ansible_date_time.iso8601_micro }}.tar.gz
+      dest: ~/openshiftprovisionbackups/teardown-backup.{{ ansible_date_time.iso8601_micro }}.tar.gz
       format: gz
 
   - name: delete openshift directories

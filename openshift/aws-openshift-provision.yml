@@ -17,14 +17,19 @@
   - name: check online
     ping:
 
-  - name: setup openshift directories
+  - name: create openshift directories
     file: 
       path: /openshiftprovision/install/
       state: directory
       mode: '0755'
-  - name: setup aws credentials directory
+  - name: create aws credentials directory
     file: 
       path: ~/.aws/
+      state: directory
+      mode: '0755'
+  - name: create installer backup directory if it doesn't exist
+    file: 
+      path: ~/openshiftprovisionbackups/
       state: directory
       mode: '0755'
 
@@ -101,3 +106,9 @@
   # disabled temporaily (added --help)
   - name: install cluster
     command: /openshiftprovision/openshift-install create cluster --help #--dir=/openshiftprovision/install --log-level=info
+
+  - name: backup the cluster install configurations and metadata
+    archive:
+      path: /openshiftprovision/install
+      dest: ~/openshiftprovisionbackups/install-backup.{{ ansible_date_time.iso8601_micro }}.tar.gz
+      format: gz
