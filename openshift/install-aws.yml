@@ -37,7 +37,7 @@
       dest: /openshiftprovision/install/install-config.yaml
   
   - name: update install config file with pull secret
-    blockinfile:
+    lineinfile:
       backup: 1
       path: /openshiftprovision/install/install-config.yaml
       line: " pullSecret: {{ pull_secret }}"
@@ -47,7 +47,6 @@
       backup: 1
       path: /openshiftprovision/install/install-config.yaml
       line: " sshKey: |"
-
   - name: update install config file with ssh public key 2
     lineinfile:
       backup: 1
@@ -55,30 +54,21 @@
       line: "  {{ sshkey }}"
 
   - name: create AWS profile
-    blockinfile:
+    lineinfile:
       backup: 1
       create: 1
       path: ~/.aws/credentials
       line: "; https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html"
-
   - name: create AWS profile 2
-    blockinfile:
-      backup: 1
-      create: 1
+    lineinfile:
       path: ~/.aws/credentials
       line: "[default]"
-        
   - name: create AWS profile 3
-    blockinfile:
-      backup: 1
-      create: 1
+    lineinfile:
       path: ~/.aws/credentials
       line: "aws_access_key_id     = {{ aws_access_key_id }}"
-        
   - name: create AWS profile 4
-    blockinfile:
-      backup: 1
-      create: 1
+    lineinfile:
       path: ~/.aws/credentials
       line: "aws_secret_access_key = {{ aws_secret_access_key }}"
         
