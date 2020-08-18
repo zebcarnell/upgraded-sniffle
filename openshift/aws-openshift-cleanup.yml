@@ -8,6 +8,14 @@
   - name: check online
     ping:
 
+  - name: check for existing environment setup
+    stat: path=/openshiftprovision/install/install-config.yaml
+    register: exists
+
+  - name: fail if no existing environment
+    fail: msg="There no existing cluster provisioned"
+    when: exists.stat.exists == False
+    
   # disabled temporaily
   - name: destroy cluster
     command: /openshiftprovision/openshift-install destroy cluster --help #--dir=/openshiftprovision/install --log-level=info

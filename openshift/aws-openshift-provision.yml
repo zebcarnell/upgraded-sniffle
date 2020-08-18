@@ -17,6 +17,14 @@
   - name: check online
     ping:
 
+  - name: check for existing environment setup
+    stat: path=/openshiftprovision/install/install-config.yaml
+    register: exists
+
+  - name: fail if existing environment
+    fail: msg="There is an existing cluster provisioned or a teardown failed"
+    when: exists.stat.exists
+    
   - name: create openshift directories
     file: 
       path: /openshiftprovision/install/
