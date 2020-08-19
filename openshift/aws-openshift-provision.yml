@@ -18,7 +18,7 @@
     ping:
 
   - name: check for existing environment setup
-    stat: path=/openshiftprovision/install/install-config.yaml
+    stat: path=/openshiftprovision/aws/install/install-config.yaml
     register: exists
 
   - name: fail if existing environment
@@ -27,7 +27,7 @@
     
   - name: create openshift directories
     file: 
-      path: /openshiftprovision/install/
+      path: /openshiftprovision/aws/install/
       state: directory
       mode: '0755'
   - name: create aws credentials directory
@@ -37,21 +37,21 @@
       mode: '0755'
   - name: create installer backup directory if it doesn't exist
     file: 
-      path: ~/openshiftprovisionbackups/
+      path: ~/openshiftprovisionbackups/aws/
       state: directory
       mode: '0755'
 
   - name: download installer 4.5 and extract
     unarchive:
       src: file:///isos/openshift-install-linux.tar.gz
-      dest: /openshiftprovision/
+      dest: /openshiftprovision/aws/
       remote_src: yes
 
   - name: create the install-config.yaml
     blockinfile:
       backup: 1
       create: 1
-      path: /openshiftprovision/install/install-config.yaml
+      path: /openshiftprovision/aws/install/install-config.yaml
       block: |
         apiVersion: v1
         baseDomain: {{ base_domain }}
@@ -113,9 +113,9 @@
   
   # disabled temporaily (added --help)
   - name: install cluster
-    command: /openshiftprovision/openshift-install create cluster --help #--dir=/openshiftprovision/install --log-level=info
+    command: /openshiftprovision/aws/openshift-install create cluster --help #--dir=/openshiftprovision/install --log-level=info
 
   - name: backup the cluster install configurations and metadata
     archive:
-      path: /openshiftprovision/install
-      dest: ~/backups/openshiftprovisionbackups/install-backup.{{ ansible_date_time.iso8601_basic_short }}.tgz
+      path: /openshiftprovision/aws/install
+      dest: ~/backups/openshiftprovisionbackups/aws/install-backup.{{ ansible_date_time.iso8601_basic_short }}.tgz
