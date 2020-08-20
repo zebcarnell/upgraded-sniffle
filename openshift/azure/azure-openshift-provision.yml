@@ -1,4 +1,116 @@
-# draft untested
+# DRAFT UNTESTED 
+---
+- name: Install an OpenShift Cluster on Azure
+  hosts: all
+  become: true
+  vars:
+    cluster_name:         'ocp'
+    base_domain:          'domain.com'
+    region:               'australiasoutheast'
+    resource_group_name:  'resource_group'
+    worker_replicas:      '2'
+    pull_secret:          '{"auths":{"cloud.openshift.com":{"auth":"blahblah"}}}'
+    sshkey:               'ssh-rsa blahblah'
+    subscription_id:      'blahblah'
+    tenant_id:            'blahblah'
+    client_id:            'blahblah'
+    client_secret:        'blahblah'
 
+  tasks:
+  - name: check online
+    ping:
 
-australiasoutheast 
+  - name: check for existing environment setup
+    stat: path=/openshiftprovision/azure/install/install-config.yaml
+    register: exists
+
+  - name: fail if existing environment
+    fail: msg="There is an existing cluster provisioned or a teardown failed"
+    when: exists.stat.exists
+    
+  - name: create openshift directories
+    file: 
+      path: /openshiftprovision/azure/install/
+      state: directory
+      mode: '0755'
+  - name: create azure credentials directory
+    file: 
+      path: ~/.azure/
+      state: directory
+      mode: '0755'
+  - name: create installer backup directory if it doesn't exist
+    file: 
+      path: ~/backups/openshiftprovisionbackups/azure/
+      state: directory
+      mode: '0755'
+
+  - name: download installer 4.5 and extract
+    unarchive:
+      src: file:///isos/openshift-install-linux.tar.gz
+      dest: /openshiftprovision/azure/
+      remote_src: yes
+
+  - name: create the install-config.yaml
+    blockinfile:
+      backup: 1
+      create: 1
+      path: /openshiftprovision/azure/install/install-config.yaml
+      block: |
+        apiVersion: v1
+        baseDomain: {{ base_domain }}
+        compute:
+        - architecture: amd64
+          hyperthreading: Enabled
+          name: worker
+          platform:
+            azure:
+              type: Standard_D2s_v3
+              osDisk:
+                diskSizeGB: 120
+          replicas: {{ worker_replicas }}
+        controlPlane:
+          architecture: amd64
+          hyperthreading: Enabled
+          name: master
+          platform:     
+            azure:
+              osDisk:
+                diskSizeGB: 120 
+              type: Standard_D4s_v3
+          replicas: 3
+        metadata:
+          creationTimestamp: null
+          name: {{ cluster_name }}
+        networking:
+          clusterNetwork:
+          - cidr: 10.128.0.0/14
+            hostPrefix: 23
+          machineNetwork:
+          - cidr: 10.0.0.0/16
+          networkType: OpenShiftSDN
+          serviceNetwork:
+          - 172.30.0.0/16
+        platform:
+          azure:
+            baseDomainResourceGroupName: {{ resource_group_name }}
+            region: {{ region }}
+        publish: External
+        pullSecret: '{{ pull_secret }}'
+        sshKey: |
+          {{ sshkey }}
+
+  - name: create Azure credentials file
+    lineinfile:
+      backup: 1
+      create: 1
+      path: ~/.azure/osServicePrincipal.json
+      line: '{"subscriptionId":"{{ subscription_id }}","clientId":"{{ client_id }}","clientSecret":"{{ client_secret }}","tenantId":"{{ tenant_id }}"}'
+
+  # disabled temporaily (added --help)
+  - name: install cluster
+    command: /openshiftprovision/azure/openshift-install create cluster --help #--dir=/openshiftprovision/azure/install --log-level=info
+
+  - name: backup the cluster install configurations and metadata
+    archive:
+      path: /openshiftprovision/azure/install
+      dest: ~/backups/openshiftprovisionbackups/azure/install-backup.{{ ansible_date_time.iso8601_basic_short }}.tgz

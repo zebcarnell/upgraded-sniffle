@@ -1,6 +1,6 @@
 # DRAFT UNTESTED
 ---
-- name: Destroy an OpenShift Cluster on AWS
+- name: Destory an OpenShift Cluster on Azure
   hosts: all
   become: true
 
@@ -9,7 +9,7 @@
     ping:
 
   - name: check for existing environment setup
-    stat: path=/openshiftprovision/aws/install/install-config.yaml
+    stat: path=/openshiftprovision/azure/install/install-config.yaml
     register: exists
 
   - name: fail if no existing environment
@@ -18,25 +18,25 @@
     
   # disabled temporaily
   - name: destroy cluster
-    command: /openshiftprovision/aws/openshift-install destroy cluster --help #--dir=/openshiftprovision/aws/install --log-level=info
+    command: /openshiftprovision/azure/openshift-install destroy cluster --help #--dir=/openshiftprovision/azure/install --log-level=info
 
   - name: create destroyer backup directory if it doesn't exist
     file: 
-      path: ~/backups/openshiftprovisionbackups/aws/
+      path: ~/backups/openshiftprovisionbackups/azure/
       state: directory
       mode: '0755'
 
   - name: backup the cluster install configurations and metadata
     archive:
-      path: /openshiftprovision/aws/install
-      dest: ~/backups/openshiftprovisionbackups/aws/teardown-backup.{{ ansible_date_time.iso8601_basic_short }}.tgz
+      path: /openshiftprovision/azure/install
+      dest: ~/backups/openshiftprovisionbackups/azure/teardown-backup.{{ ansible_date_time.iso8601_basic_short }}.tgz
 
   - name: delete openshift directories
     file: 
-      path: /openshiftprovision/aws/
+      path: /openshiftprovision/azure/
       state: absent
 
-  - name: delete aws credentials
+  - name: delete azure credentials
     file: 
-      path: ~/.aws/credentials
+      path: ~/.azure/osServicePrincipal.json
       state: absent
