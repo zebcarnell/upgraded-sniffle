@@ -4,6 +4,7 @@
   hosts: all
   become: true
   vars:
+    debug_mode:             true
     cluster_name:           'ocp'
     base_domain:            'domain.com'
     region:                 'ap-southeast-2'
@@ -114,6 +115,7 @@
   # disabled temporaily (added --help)
   - name: install cluster
     command: /openshiftprovision/aws/openshift-install create cluster --help #--dir=/openshiftprovision/aws/install --log-level=info
+    when: debug_mode == false
 
   - name: backup the cluster install configurations and metadata
     archive:

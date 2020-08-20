@@ -4,17 +4,18 @@
   hosts: all
   become: true
   vars:
+    debug_mode:           true
     cluster_name:         'ocp'
     base_domain:          'domain.com'
     region:               'australiasoutheast'
-    resource_group_name:  'resource_group'
     worker_replicas:      '2'
     pull_secret:          '{"auths":{"cloud.openshift.com":{"auth":"blahblah"}}}'
     sshkey:               'ssh-rsa blahblah'
     subscription_id:      'blahblah'
     tenant_id:            'blahblah'
-    client_id:            'blahblah'
-    client_secret:        'blahblah'
+    app_id:               'blahblah'
+    app_password:         'blahblah'
+    resource_group_name:  'resource_group'
 
   tasks:
   - name: check online
@@ -101,14 +102,15 @@
 
   - name: create azure credentials file
     copy:
-      content: '{"subscriptionId":"{{ subscription_id }}","clientId":"{{ client_id }}","clientSecret":"{{ client_secret }}","tenantId":"{{ tenant_id }}"}'
+      content: '{"subscriptionId":"{{ subscription_id }}","clientId":"{{ app_id }}","clientSecret":"{{ app_password }}","tenantId":"{{ tenant_id }}"}'
       dest: ~/.azure/osServicePrincipal.json
       force: false
 
   # disabled temporaily (added --help)
   - name: install cluster
     command: /openshiftprovision/azure/openshift-install create cluster --help #--dir=/openshiftprovision/azure/install --log-level=info
-
+    when: debug_mode == false
+    
   - name: backup the cluster install configurations and metadata
     archive:
       path: /openshiftprovision/azure/install
