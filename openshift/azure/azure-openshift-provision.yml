@@ -103,6 +103,7 @@
     lineinfile:
       path: ~/.azure/osServicePrincipal.json
       mode: '0755'
+      state: present
 
   - name: populate file with json
     copy:
