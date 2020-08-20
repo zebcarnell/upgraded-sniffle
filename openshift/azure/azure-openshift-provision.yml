@@ -103,7 +103,7 @@
     file:
       path: ~/.azure/osServicePrincipal.json
       mode: '0755'
-      state: present
+      state: file
 
   - name: populate Azure credentials file with json
     copy:
