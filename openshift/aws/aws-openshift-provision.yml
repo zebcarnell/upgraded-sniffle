@@ -118,6 +118,10 @@
     register: result
     when: debug_mode == 'false'
 
+  - debug:
+      var: result
+      verbosity: 2
+      
   - name: backup the cluster install configurations and metadata
     archive:
       path: /openshiftprovision/aws/install
