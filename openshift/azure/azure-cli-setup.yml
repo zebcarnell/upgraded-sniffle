@@ -1,0 +1,28 @@
+
+
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+
+sudo sh -c 'echo -e "[azure-cli]
+name=Azure CLI
+baseurl=https://packages.microsoft.com/yumrepos/azure-cli
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/azure-cli.repo'
+
+sudo yum install azure-cli jq
+
+az login #pass some stuff?
+
+az account show #get tenantId and id parameters from output
+
+az ad sp create-for-rbac --role Contributor --name zeb  #get appId and password from output
+
+az role assignment create --role "User Access Administrator" \
+    --assignee-object-id $(az ad sp list --filter "appId eq '<appId>'" \  #use appID
+       | jq '.[0].objectId' -r) 
+
+az ad app permission add --id <appId> \ 
+     --api 00000002-0000-0000-c000-000000000000 \
+     --api-permissions 824c81eb-e3f8-4ee6-8f6d-de7f50d565b7=Role  #use appID
+
+     
