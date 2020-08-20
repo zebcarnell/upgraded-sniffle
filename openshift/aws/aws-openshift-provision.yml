@@ -115,7 +115,7 @@
   # disabled temporaily (added --help)
   - name: install cluster
     command: /openshiftprovision/aws/openshift-install create cluster --help #--dir=/openshiftprovision/aws/install --log-level=info
-    when: debug_mode == false
+    when: debug_mode == 'false'
 
   - name: backup the cluster install configurations and metadata
     archive:
