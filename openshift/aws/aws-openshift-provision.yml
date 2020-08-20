@@ -37,7 +37,7 @@
       mode: '0755'
   - name: create installer backup directory if it doesn't exist
     file: 
-      path: ~/openshiftprovisionbackups/aws/
+      path: ~/backups/openshiftprovisionbackups/aws/
       state: directory
       mode: '0755'
 
