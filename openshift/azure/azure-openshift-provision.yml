@@ -104,7 +104,7 @@
       backup: 1
       create: 1
       path: ~/.azure/osServicePrincipal.json
-      line: '{"subscriptionId":"{{ subscription_id }}","clientId":"{{ client_id }}","clientSecret":"{{ client_secret }}","tenantId":"{{ tenant_id }}"}'
+      line: "{\"subscriptionId\":\"{{ subscription_id }}\",\"clientId\":\"{{ client_id }}\",\"clientSecret\":\"{{ client_secret }}\",\"tenantId\":\"{{ tenant_id }}\"}"
 
   # disabled temporaily (added --help)
   - name: install cluster
