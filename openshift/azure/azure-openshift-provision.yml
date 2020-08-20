@@ -99,11 +99,11 @@
         sshKey: |
           {{ sshkey }}
 
-  - name: create Azure credentials file
-    file:
-      path: ~/.azure/osServicePrincipal.json
-      mode: '0755'
-      state: file
+  # - name: create Azure credentials file
+  #   file:
+  #     path: ~/.azure/osServicePrincipal.json
+  #     mode: '0755'
+  #     state: file
 
   - name: populate Azure credentials file with json
     copy:
