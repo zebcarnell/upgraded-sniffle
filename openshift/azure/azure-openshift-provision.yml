@@ -99,7 +99,7 @@
         sshKey: |
           {{ sshkey }}
 
-  - name: create Azure credentials file
+  - name: create azure credentials file
     copy:
       content: '{"subscriptionId":"{{ subscription_id }}","clientId":"{{ client_id }}","clientSecret":"{{ client_secret }}","tenantId":"{{ tenant_id }}"}'
       dest: ~/.azure/osServicePrincipal.json
