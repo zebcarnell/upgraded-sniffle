@@ -108,7 +108,7 @@
 
   # disabled temporaily (added --help)
   - name: install cluster
-    command: /openshiftprovision/azure/openshift-install create cluster --help #--dir=/openshiftprovision/azure/install --log-level=info
+    command: /openshiftprovision/azure/openshift-install create cluster  --dir=/openshiftprovision/azure/install --log-level=info #--help
     when: debug_mode == 'false'
     register: result
 
