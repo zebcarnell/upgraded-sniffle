@@ -9,7 +9,7 @@
     ping:
 
   - name: check for existing environment setup
-    stat: path=/openshiftprovision/azure/install/install-config.yaml
+    stat: path=/openshiftprovision/azure/install/metadata.json
     register: exists
 
   - name: fail if no existing environment
@@ -18,7 +18,7 @@
     
   # disabled temporaily
   - name: destroy cluster
-    command: /openshiftprovision/azure/openshift-install destroy cluster --help #--dir=/openshiftprovision/azure/install --log-level=info
+    command: /openshiftprovision/azure/openshift-install destroy cluster --dir=/openshiftprovision/azure/install --log-level=info
 
   - name: create destroyer backup directory if it doesn't exist
     file: 

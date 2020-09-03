@@ -22,7 +22,7 @@
     ping:
 
   - name: check for existing environment setup
-    stat: path=/openshiftprovision/azure/install/install-config.yaml
+    stat: path=/openshiftprovision/azure/install/install-config.yaml #and metadata.json
     register: exists
 
   - name: fail if existing environment
