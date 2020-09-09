@@ -13,13 +13,13 @@
       name: 7zip
       state: present
 
-  # - name: Install Chrome
-  #   win_chocolatey:
-  #     name: googlechrome
-  #     state: present
+  - name: Install Chrome
+    win_chocolatey:
+      name: googlechrome
+      state: present
   
-  # - name: Install Git
-  #   win_chocolatey:
-  #     name: git.install
-  #     state: present
+  - name: Install Git
+    win_chocolatey:
+      name: git.install
+      state: present
       

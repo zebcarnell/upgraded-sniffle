@@ -3,11 +3,11 @@
   become: true
   hosts: all
   gather_facts: false
-  
+
   tasks:
   - name: check hosts online
-    ping:
+    win_ping:
 
   - name: reboot
-    reboot:
+    win_reboot:
       reboot_timeout: 3600
