@@ -1,0 +1,15 @@
+---
+- name: upgrade all machines
+  hosts: server
+  become: true
+  gather_facts: false
+  
+  tasks:
+  - name: check hosts online
+    ping:
+
+  - name: get installer
+    get_url: 
+      url: https://code-server.dev/install.sh
+      dest: ~/install-vscode-server.sh
+

@@ -2,8 +2,12 @@
 - name: upgrade all machines
   hosts: rhel
   become: true
-
+  gather_facts: false
+  
   tasks:
+  - name: check hosts online
+    ping:
+
   - name: update and upgrade
     yum:
       name: '*'
