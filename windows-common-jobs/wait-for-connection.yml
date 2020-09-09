@@ -1,11 +1,11 @@
 ---
-- name: restart machines
+- name: waiting for provision to complete
   become: true
   hosts: all
   gather_facts: false
 
   tasks:
-  - name: For connection
+  - name: Wait for connection to VMs
     wait_for_connection:
       delay: 300
       timeout: 3600
