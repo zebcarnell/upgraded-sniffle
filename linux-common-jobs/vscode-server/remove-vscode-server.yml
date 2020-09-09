@@ -25,7 +25,7 @@
     service:
       name: firewalld
       state: reloaded
-      
+
   - name: remove vscode server
     command: rpm -e code-server
 
