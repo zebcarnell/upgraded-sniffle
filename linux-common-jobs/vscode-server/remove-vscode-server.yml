@@ -28,6 +28,7 @@
 
   - name: remove vscode server
     command: rpm -e code-server
+    warn: false
 
   - name: remove directories
     file: 
