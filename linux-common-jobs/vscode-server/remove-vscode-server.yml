@@ -1,0 +1,35 @@
+---
+- name: remove a vs-code server
+  hosts: server
+  become: true
+  gather_facts: false
+
+  tasks:
+  - name: check hosts online
+    ping:
+
+  - name: disable service
+    service:
+      name: code-server@$USER
+      enabled: false
+      state: stopped
+
+  - name: disable firewall rule
+    firewalld:
+      zone: home
+      port: 8080/tcp
+      permanent: true
+      state: disabled
+
+  - name: remove vscode server
+    command: rpm -e code-server
+
+  - name: remove directories
+    file: 
+      path: ~/.config/code-server/
+      state: absent
+
+  - name: remove directories 2
+    file: 
+      path: ~/.cache/code-server/
+      state: absent
