@@ -1,9 +1,11 @@
 ---
-- name: upgrade all machines
+- name: install a vs-code server
   hosts: server
   become: true
   gather_facts: false
-  
+  vars:
+    server_password: blahblahblah
+
   tasks:
   - name: check hosts online
     ping:
@@ -28,19 +30,19 @@
       path: ~/.config/code-server/config.yaml
       block: |
         bind-addr: 0.0.0.0:8080
-        auth: none
-        password: e1fa2317788a2281c02dfda3
+        auth: password
+        password: {{ server_password }}
         cert: true
 
   - name: enable service
     service:
       name: code-server@$USER
-      enabled: yes
+      enabled: true
       state: started
 
   - name: enable firewall rule
     firewalld:
       zone: home
       port: 8080/tcp
-      permanent: yes
+      permanent: true
       state: enabled
