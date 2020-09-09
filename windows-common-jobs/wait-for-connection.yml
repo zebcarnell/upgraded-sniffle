@@ -5,7 +5,7 @@
   gather_facts: false
 
   tasks:
-  - name: Wait for connection to VMs
+  - name: Wait for connection to nodes
     wait_for_connection:
       timeout: 3600
 
