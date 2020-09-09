@@ -13,3 +13,34 @@
       url: https://code-server.dev/install.sh
       dest: ~/install-vscode-server.sh
 
+  - name: install vscode server
+    command: sh ~/install-vscode-server.sh
+
+  - name: setup directories
+    file: 
+      path: ~/.config/code-server/
+      state: directory
+
+  - name: set configuration
+    blockinfile:
+      backup: 1
+      create: 1
+      path: ~/.config/code-server/config.yaml
+      block: |
+        bind-addr: 0.0.0.0:8080
+        auth: none
+        password: e1fa2317788a2281c02dfda3
+        cert: true
+
+  - name: enable service
+    service:
+      name: code-server@$USER
+      enabled: yes
+      state: started
+
+  - name: enable firewall rule
+    firewalld:
+      zone: home
+      port: 8080/tcp
+      permanent: yes
+      state: enabled

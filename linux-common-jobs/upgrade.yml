@@ -1,6 +1,6 @@
 ---
 - name: upgrade all machines
-  hosts: rhel
+  hosts: all
   become: true
   gather_facts: false
   
