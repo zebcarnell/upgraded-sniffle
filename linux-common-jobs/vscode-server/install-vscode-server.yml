@@ -46,3 +46,8 @@
       port: 8080/tcp
       permanent: true
       state: enabled
+
+  - name: reload service firewalld
+    service:
+      name: firewalld
+      state: reloaded
