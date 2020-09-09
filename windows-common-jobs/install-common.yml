@@ -8,17 +8,11 @@
   - name: check online
     win_ping:
 
-  - name: Install 7-Zip
+  - name: Install applications
     win_chocolatey:
-      name: 7zip
+      name: 
+       - 7zip
+       - git
+       #- googlechrome
       state: present
 
-  # - name: Install Chrome
-  #   win_chocolatey:
-  #     name: googlechrome
-  #     state: present
-  
-  - name: Install Git
-    win_chocolatey:
-      name: git.install
-      state: present
