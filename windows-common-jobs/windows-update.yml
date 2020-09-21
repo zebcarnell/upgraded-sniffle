@@ -2,12 +2,9 @@
 - name: run windows update on Windows machines
   become: true
   hosts: all
-  gather_facts: false
+  gather_facts: true
 
   tasks:
-  - name: check online
-    win_ping:
-  
   - name: perform updates
     win_updates:
       category_names:

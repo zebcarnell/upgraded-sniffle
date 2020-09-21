@@ -2,12 +2,9 @@
 - name: install common applications
   become: true
   hosts: all
-  gather_facts: false
+  gather_facts: true
 
   tasks:
-  - name: check online
-    win_ping:
-
   - name: Install applications
     win_chocolatey:
       name: 
