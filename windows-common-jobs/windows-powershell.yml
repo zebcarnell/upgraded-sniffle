@@ -1,0 +1,13 @@
+---
+- name: run power shell scripts
+  become: true
+  hosts: all
+  gather_facts: true
+
+  tasks:
+  - name: download powershell script
+    get_url: 
+      url: https://server.com/drift-config.ps1
+      dest: C:\scripts\drift-config.ps1
+
+  - win_shell: C:\scripts\drift-config.ps1 >> C:\logs\drift-config.txt

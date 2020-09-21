@@ -18,4 +18,3 @@
        - git
        - googlechrome
       state: present
-
