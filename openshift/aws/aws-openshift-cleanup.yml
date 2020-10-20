@@ -8,13 +8,13 @@
   - name: check online
     ping:
 
-  - name: check for existing environment setup
-    stat: path=/openshiftprovision/aws/install/install-config.yaml
-    register: exists
+  # - name: check for existing environment setup
+  #   stat: path=/openshiftprovision/aws/install/install-config.yaml
+  #   register: exists
 
-  - name: fail if no existing environment
-    fail: msg="There no existing cluster provisioned"
-    when: exists.stat.exists == False
+  # - name: fail if no existing environment
+  #   fail: msg="There no existing cluster provisioned"
+  #   when: exists.stat.exists == False
     
   # disabled temporaily
   - name: destroy cluster
