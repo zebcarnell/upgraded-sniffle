@@ -18,7 +18,7 @@
     
   # disabled temporaily
   - name: destroy cluster
-    command: /openshiftprovision/aws/openshift-install destroy cluster --help #--dir=/openshiftprovision/aws/install --log-level=info
+    command: /openshiftprovision/aws/openshift-install destroy cluster --dir=/openshiftprovision/aws/install --log-level=info
 
   - name: create destroyer backup directory if it doesn't exist
     file: 
