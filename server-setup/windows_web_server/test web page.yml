@@ -1,0 +1,10 @@
+---
+- name: Test Windows Webserver Playbook
+  hosts: webservers
+  become: true
+  
+- tasks:
+  name: Ensure the webserver is reachable
+  uri:
+    url: http://{{inventory_hostname}}
+    status_code: '200'
