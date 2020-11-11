@@ -2,7 +2,7 @@
 - name: run power shell scripts
   become: true
   hosts: all
-  gather_facts: true
+  gather_facts: false
 
   tasks:
   - name: download powershell script

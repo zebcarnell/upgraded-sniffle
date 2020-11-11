@@ -2,7 +2,7 @@
 - name: run windows update on Windows machines
   become: true
   hosts: all
-  gather_facts: true
+  gather_facts: false
 
   tasks:
   - name: perform updates

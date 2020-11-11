@@ -1,14 +1,20 @@
 ---
-- name: configure firewall rules
+- name: configure windows remote desktop
   become: true
   hosts: all
-  gather_facts: true
+  gather_facts: false
 
+- name: Enable Remote Desktop Feature
+  win_feature:
+    name: Remote-Desktop-Services
+    state: present
+  register: _windows_remote_desktop_services_enabled
+  
   tasks:
   - name: Firewall rule to allow RDP on TCP port 3389
     win_firewall_rule:
       name: Remote Desktop
-      localport: 3389
+      localport: '3389'
       action: allow
       direction: in
       protocol: tcp

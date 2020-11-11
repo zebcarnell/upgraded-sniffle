@@ -2,7 +2,7 @@
 - name: install common applications
   become: true
   hosts: all
-  gather_facts: true
+  gather_facts: false
 
   tasks:
   # - name: Install Remote Desktop Connection Manager from msi

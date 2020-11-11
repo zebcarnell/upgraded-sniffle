@@ -2,7 +2,7 @@
 - name: install windows features
   become: true
   hosts: all
-  gather_facts: true
+  gather_facts: false
 
   tasks:
   - name: Install IIS Web-Server with sub features and management tools
