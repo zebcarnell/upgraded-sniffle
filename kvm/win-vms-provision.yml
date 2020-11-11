@@ -29,25 +29,6 @@
     - virsh pool-start isos
     - virsh pool-autostart isos
 
-  # # Add check first then do create pool
-  # - name: setup winvm pool
-  #   command: virsh pool-define-as winvms --type dir --target /vms/vms/win/
-  # - name: setup winvm pool 2
-  #   command: virsh pool-build winvms
-  # - name: setup winvm pool 3
-  #   command: virsh pool-start winvms
-  # - name: setup winvm pool 4
-  #   command: virsh pool-autostart winvms  
-  # # Add check first then create pool
-  # - name: setup iso pool
-  #   command: virsh pool-define-as isos --type dir --target /vms/isos/
-  # - name: setup iso pool 2
-  #   command: virsh pool-build isos
-  # - name: setup iso pool 3
-  #   command: virsh pool-start isos
-  # - name: setup iso pool 4
-  #   command: virsh pool-autostart isos
-
 #Get Images
   - name: get windows server 2019 installer
     get_url: 
