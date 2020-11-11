@@ -11,21 +11,29 @@
 # Prepare directories
   - name: setup directories
     file: 
-      path: /vms/vms/win/
+      path: {{ item }}
       state: directory
       mode: '0755'
-  
-  #- name: setup directories 2
-  - file: 
-      path: /vms/templates/
-      state: directory
-      mode: '0755'
+    with_items:
+      - /vms/templates/
+      - /vms/isos/
+      - /vms/vms/win/
 
-  #- name: setup directories 3
-  - file: 
-      path: /vms/isos/
-      state: directory
-      mode: '0755'
+  # - name: setup directories
+  #   file: 
+  #     path: /vms/templates/
+  #     state: directory
+  #     mode: '0755'
+  # - name: setup directories 2
+  #   file: 
+  #     path: /vms/templates/
+  #     state: directory
+  #     mode: '0755'
+  # - name: setup directories 3
+  #   file: 
+  #     path: /vms/isos/
+  #     state: directory
+  #     mode: '0755'
 
 
 # Prepare Pools
