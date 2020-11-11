@@ -11,13 +11,13 @@
 # Prepare directories
   - name: setup directories
     file: 
-      path: {{ item }}
+      path: '{{ item }}'
       state: directory
       mode: '0755'
     with_items:
-      - /vms/templates/
-      - /vms/isos/
-      - /vms/vms/win/
+    - /vms/templates/
+    - /vms/isos/
+    - /vms/vms/win/
 
   # - name: setup directories
   #   file: 
