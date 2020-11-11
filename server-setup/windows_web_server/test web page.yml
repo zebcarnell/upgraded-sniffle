@@ -5,6 +5,6 @@
   
   tasks:
   - name: Ensure the webserver is reachable
-    uri:
+    win_uri:
       url: http://{{inventory_hostname}}
       status_code: '200'
