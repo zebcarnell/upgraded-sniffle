@@ -18,8 +18,13 @@
     - Public
   tags: enable_firewall
 
-- name: copy index.html
+- name: Copy website
   template:
     src: index.html.j2
     dest: c:\inetpub\wwwroot\index.html
-  notify: checkwebserver
+
+- name: Ensure the webserver is reachable
+  win_uri:
+    url: http://{{inventory_hostname}}
+    status_code: '200'
+  
