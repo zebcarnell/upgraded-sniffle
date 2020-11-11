@@ -15,14 +15,14 @@
       state: directory
       mode: '0755'
   
-  - name: setup directories 2
-    file: 
+  #- name: setup directories 2
+  - file: 
       path: /vms/templates/
       state: directory
       mode: '0755'
 
-  - name: setup directories 3
-    file: 
+  #- name: setup directories 3
+  - file: 
       path: /vms/isos/
       state: directory
       mode: '0755'
