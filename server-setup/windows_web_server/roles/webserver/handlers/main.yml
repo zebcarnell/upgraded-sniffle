@@ -5,24 +5,4 @@
   listen: checkreboot
   win_reboot:
   when: win_feature.reboot_required
-
-- name: Firewall rule to allow RDP on TCP port 3389
-  listen: setfirewallrules
-  win_firewall_rule:
-    name: Remote Desktop
-    localport: 80,443
-    action: allow
-    direction: in
-    protocol: tcp
-    profiles: private
-    state: present
-    enabled: yes
-
-# # change to IIS
-# - name: restart iis service
-#   listen: restartiisservice
-#   service:
-#     name: iis
-#     state: restarted
-#     enabled: 'yes'
-
+  

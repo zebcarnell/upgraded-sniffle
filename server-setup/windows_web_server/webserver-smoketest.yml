@@ -1,9 +1,0 @@
----
-- name: Verify the IIS service
-  hosts: localhost
-
-  tasks:
-    - name: Ensure the webserver is reachable
-      uri:
-        url: http://app1.${GUID}.internal #update this with some variables for hostname of a server from hosts
-        status_code: 200
