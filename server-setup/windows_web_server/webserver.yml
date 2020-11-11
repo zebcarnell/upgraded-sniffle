@@ -1,0 +1,7 @@
+---
+- name: Windows Webserver Playbook
+  hosts: webservers
+  become: 'yes'
+
+  roles:
+  - webserver
