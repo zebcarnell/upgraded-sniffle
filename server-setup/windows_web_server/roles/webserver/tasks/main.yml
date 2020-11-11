@@ -18,7 +18,7 @@
     - Public
   tags: enable_firewall
 
-- name: Copy website
+- name: Deploy website to servers
   template:
     src: index.html.j2
     dest: c:\inetpub\wwwroot\index.html
