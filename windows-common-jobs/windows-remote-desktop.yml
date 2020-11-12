@@ -11,6 +11,9 @@
       state: present
     register: _windows_remote_desktop_services_enabled
   
+  - name: Enable RDP
+    win_command: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
+
   - name: Firewall rule to allow RDP on TCP port 3389
     win_firewall_rule:
       name: Remote Desktop
