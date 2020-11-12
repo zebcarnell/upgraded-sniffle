@@ -4,13 +4,13 @@
   hosts: all
   gather_facts: false
 
-- name: Enable Remote Desktop Feature
-  win_feature:
-    name: Remote-Desktop-Services
-    state: present
-  register: _windows_remote_desktop_services_enabled
-  
   tasks:
+  - name: Enable Remote Desktop Feature
+    win_feature:
+      name: Remote-Desktop-Services
+      state: present
+    register: _windows_remote_desktop_services_enabled
+  
   - name: Firewall rule to allow RDP on TCP port 3389
     win_firewall_rule:
       name: Remote Desktop
