@@ -8,13 +8,13 @@
   - name: check online
     ping:
 
-  - name: destory win1
+  - name: destroy win1
     virt:
       command: destroy
       name: win1
     ignore_errors: true
 
-  - name: destory win2
+  - name: destroy win2
     virt:
       command: destroy
       name: win2
