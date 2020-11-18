@@ -8,6 +8,21 @@
     name:         'win2019'
     template:     'Windows-Server-2019'
     cluster:      'host-zeb-nz-Local'
+    url:          'https://server.zeb.nz/ovirt-engine/api'
+    username:     'admin@internal'
+    password:     ''
+
+
+  pre_tasks:
+    - name: Login to RHV
+      ovirt_auth:
+        url: '{{ url }}'
+        username: '{{ username }}'
+        password: '{{ password }}'
+        ca_file: "omit"
+        insecure: 'true'
+      tags:
+        - always
 
   tasks:
   - name: Create VM
@@ -16,3 +31,11 @@
       template: '{{ template }}'
       cluster: '{{ cluster }}'
       use_latest_template_version: true
+
+  post_tasks:
+    - name: Logout from RHV
+      ovirt_auth:
+        state: absent
+        ovirt_auth: "{{ ovirt_auth }}"
+      tags:
+        - always
