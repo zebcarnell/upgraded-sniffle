@@ -2,7 +2,7 @@
 - name: create vm on RH Virtualization
   become: true
   hosts: all
-  gather_facts: false
+  gather_facts: true
 
   vars:
     url:          'https://server.zeb.nz/ovirt-engine/api'
