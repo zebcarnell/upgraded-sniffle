@@ -1,0 +1,16 @@
+---
+- name: create vm on RH Virtualization
+  become: true
+  hosts: all
+  vars:
+    nane:         'win2019'
+    template:     'Windows-Server-2019'
+    cluster:      'host-zeb-nz-Local'
+
+  tasks:
+  - name: Create VM
+    ovirt_vm:
+      name: {{ name }}
+      template: {{ template }}
+      cluster: {{ cluster }}
+      use_latest_template_version: true
