@@ -5,13 +5,12 @@
   gather_facts: false
 
   vars:
-    name:         'win2019'
-    template:     'Windows-Server-2019'
-    cluster:      'host-zeb-nz-Local'
     url:          'https://server.zeb.nz/ovirt-engine/api'
     username:     'admin@internal'
     password:     ''
-
+    name:         'win2019'
+    template:     'Windows-Server-2019'
+    cluster:      'host-zeb-nz-Local'
 
   pre_tasks:
     - name: Login to RHV
@@ -31,6 +30,7 @@
       template: '{{ template }}'
       cluster: '{{ cluster }}'
       use_latest_template_version: true
+      auth: "{{ ovirt_auth }}"
 
   post_tasks:
     - name: Logout from RHV
