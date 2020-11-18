@@ -8,7 +8,7 @@
     url:          'https://server.zeb.nz/ovirt-engine/api'
     username:     'admin@internal'
     password:     ''
-    name:         'win2019'
+    name:         '{{ template }}-{{ ansible_date_time.iso8601_basic_short }}'
     template:     'Windows-Server-2019'
     cluster:      'host-zeb-nz-Local'
 
@@ -31,6 +31,7 @@
       cluster: '{{ cluster }}'
       use_latest_template_version: true
       auth: "{{ ovirt_auth }}"
+      state: running
 
   post_tasks:
     - name: Logout from RHV
