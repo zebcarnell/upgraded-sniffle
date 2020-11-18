@@ -3,7 +3,7 @@
   become: true
   hosts: all
   vars:
-    nane:         'win2019'
+    name:         'win2019'
     template:     'Windows-Server-2019'
     cluster:      'host-zeb-nz-Local'
 
