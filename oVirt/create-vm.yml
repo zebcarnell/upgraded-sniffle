@@ -10,7 +10,7 @@
   tasks:
   - name: Create VM
     ovirt_vm:
-      name: {{ name }}
-      template: {{ template }}
-      cluster: {{ cluster }}
+      name: '{{ name }}'
+      template: '{{ template }}'
+      cluster: '{{ cluster }}'
       use_latest_template_version: true
