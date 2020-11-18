@@ -2,6 +2,8 @@
 - name: create vm on RH Virtualization
   become: true
   hosts: all
+  gather_facts: false
+
   vars:
     name:         'win2019'
     template:     'Windows-Server-2019'
