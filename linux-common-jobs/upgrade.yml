@@ -2,12 +2,9 @@
 - name: upgrade all machines
   hosts: all
   become: true
-  gather_facts: false
+  gather_facts: true
   
   tasks:
-  - name: check hosts online
-    ping:
-
   - name: update and upgrade
     yum:
       name: '*'
