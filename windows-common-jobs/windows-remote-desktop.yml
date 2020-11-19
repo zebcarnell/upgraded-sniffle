@@ -5,11 +5,11 @@
   gather_facts: false
 
   tasks:
-  - name: Enable Remote Desktop Feature
-    win_feature:
-      name: Remote-Desktop-Services
-      state: present
-    register: _windows_remote_desktop_services_enabled
+  # - name: Enable Remote Desktop Feature
+  #   win_feature:
+  #     name: Remote-Desktop-Services
+  #     state: present
+  #   register: _windows_remote_desktop_services_enabled
   
   - name: Enable RDP
     win_shell: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
