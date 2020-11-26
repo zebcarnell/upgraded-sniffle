@@ -1,19 +1,19 @@
 ---
-- name: scare uncle john in christchurch #what?
-  hosts: uncle-john #who?
-  gather_facts: true #make sure he is awake
+- name: scare uncle john in christchurch
+  hosts: uncle.john
+
   vars:
     - mobilephone: '021123456'
   
   tasks:
-  - name: scare hin
+  - name: scare him
     scare:
       what: ghost
       state: success
     register: result
     notify: joke
   
-  - name: if first scare unsucessful
+  - name: try again
     scare:
       what: dentist
       state: success
