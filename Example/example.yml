@@ -1,0 +1,30 @@
+---
+- name: scare uncle john in christchurch #what?
+  hosts: uncle-john #who?
+  gather_facts: true #make sure he is awake
+  vars:
+    - mobilephone: '021123456'
+  
+  tasks:
+  - name: scare hin
+    scare:
+      what: ghost
+      state: success
+    register: result
+    notify: joke
+  
+  - name: if first scare unsucessful
+    scare:
+      what: dentist
+      state: success
+    when: result.not_scared
+    notify: joke
+  
+  handlers:
+  - name: tell uncle john it was all a joke
+    listen: joke
+    sms:
+      - server: sms-server.example.com
+      - number: {{ mobilephone }}
+      - message: 'Sorry Uncle John it was all a joke :)'
+  
