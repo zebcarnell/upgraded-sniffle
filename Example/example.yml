@@ -19,7 +19,7 @@
     notify: joke
   
   handlers:
-  - name: tell him it was all a joke
+  - name: tell him it was a joke
     listen: joke
     sms:
       - server: sms-server.example.com
