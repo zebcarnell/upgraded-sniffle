@@ -5,7 +5,7 @@
   vars:
     - mobilephone: '021123456'
   
-  tasks:
+  tasks: 
   - name: scare him
     ghost:
       state: success
