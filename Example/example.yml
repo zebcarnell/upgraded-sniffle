@@ -7,21 +7,19 @@
   
   tasks:
   - name: scare him
-    scare:
-      what: ghost
+    ghost:
       state: success
     register: result
     notify: joke
   
   - name: try again
-    scare:
-      what: dentist
+    spider:
       state: success
     when: result.not_scared
     notify: joke
   
   handlers:
-  - name: tell uncle john it was all a joke
+  - name: tell him it was all a joke
     listen: joke
     sms:
       - server: sms-server.example.com
