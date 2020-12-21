@@ -16,3 +16,4 @@
 
   - name: backup tower
     command: sh ~/ansible-tower-setup-3.7.2-1/setup.sh -e 'backup_dest=~/backups/ansible' -b
+ 
