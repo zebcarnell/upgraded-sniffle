@@ -16,5 +16,5 @@
       name: 
        - 7zip
        - git
-       #- googlechrome
+       - googlechrome
       state: present
